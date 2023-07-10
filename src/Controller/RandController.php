@@ -13,6 +13,7 @@ extends \Doctrine\ORM\Query\AST\Functions\FunctionNode
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
+        
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
 
