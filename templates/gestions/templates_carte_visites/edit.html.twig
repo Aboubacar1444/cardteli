@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TemplatesCarteVisites{% endblock %}
+
+{% block body %}
+    <h1>Edit TemplatesCarteVisites</h1>
+
+    {{ include('templates_carte_visites/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_templates_carte_visites_index') }}">back to list</a>
+
+    {{ include('templates_carte_visites/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base-compte.html.twig' %}
+
+{% block title %}Hello ComptesController!{% endblock %}
+
+{% block body %}
+<section class="ls section_padding_top_150 section_padding_bottom_150 colum_padding_30">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-12">
+                <article class="post event-item side-item side-sm content-padding with_shadow">
+                    <div class="ds gradient lightened with_padding">
+                        <div class="widget widget_search">
+                            <h3 class="widget-title">Rechercher un numéro de 1 à 50000</h3>
+                            <form method="get" class="searchform" action="./">
+                                <div class="form-group margin_0"> <label class="sr-only"
+                                        for="widget-search">Search for:</label> <input id="widget-search"
+                                        type="text" value="" name="search" class="form-control"
+                                        placeholder="Search here"> </div> <button type="submit"
+                                    class="theme_button no_bg_button">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </article>
+                 <article class="post event-item side-item side-sm content-padding with_shadow">
+                     <div class="row">
+                        <div class="col-xs-12 text-center text-sm-left">
+            
+                                <div class="toppadding_5"></div>
+                               
+                             
+
+                            </div>
+                        </div>
+                </article>
+                
+                
+            </div>
+           
+        </div>
+    </div>
+</section>
+{% endblock %}

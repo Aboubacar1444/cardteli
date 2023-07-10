@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+	<title>Finwiz</title>
+	<meta charset="utf-8">
+	<!--[if IE]>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<![endif]-->
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="stylesheet" href="{{domaine}}/util/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{domaine}}/util/css/animations.css">
+	<link rel="stylesheet" href="{{domaine}}/util/css/fonts.css">
+	<link rel="stylesheet" href="{{domaine}}/util/css/main.css" class="color-switcher-link">
+	<link rel="stylesheet" href="{{domaine}}/util/css/shop.css" class="color-switcher-link">
+	<script src="{{domaine}}/util/js/vendor/modernizr-2.6.2.min.js"></script>
+
+</head>
+
+<body>
+	<!--[if lt IE 9]>
+		<div class="bg-danger text-center">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" class="highlight">upgrade your browser</a> to improve your experience.</div>
+	<![endif]-->
+	<div class="preloader">
+		<div class="preloader_image"></div>
+	</div>
+	<!-- search modal -->
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="search_modal" id="search_modal"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">
+			<i class="rt-icon2-cross2"></i>
+		</span>
+	</button>
+		<div class="widget widget_search">
+			<form method="get" class="searchform search-form form-inline" action="./">
+				<div class="form-group bottommargin_0"> <input type="text" value="" name="search" class="form-control" placeholder="Search keyword" id="modal-search-input"> </div> <button type="submit" class="theme_button color1 no_bg_button">Search</button> </form>
+		</div>
+	</div>
+	<!-- Unyson messages modal -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="messages_modal">
+		<div class="fw-messages-wrap ls with_padding">
+			<!-- Uncomment this UL with LI to show messages in modal popup to your user: -->
+			<!--
+		<ul class="list-unstyled">
+			<li>Message To User</li>
+		</ul>
+		-->
+		</div>
+	</div>
+	<!-- eof .modal -->
+	<!-- wrappers for visual page editor and boxed version of template -->
+	<div id="canvas">
+		<div id="box_wrapper">
+			<!-- template sections -->
+			<section class="page_topline ls">
+				<div class="container">
+					<div class="row flex-wrap v-center">
+						<div class="col-xs-12 col-sm-5">
+							<div class="darklinks"> <a class="social-icon socicon-facebook" href="#" title="Facebook"></a> <a class="social-icon socicon-twitter" href="#" title="Twitter"></a> <a class="social-icon socicon-google" href="#" title="Twitter"></a> <a class="social-icon socicon-linkedin"
+								    href="#" title="Twitter"></a> <a class="social-icon socicon-youtube" href="#" title="Youtube"></a> </div>
+						</div>
+						<div class="col-xs-12 col-sm-7 text-center text-sm-right">
+							<div class="inline-content grey">
+								<div> <span class="darklinks">
+							<i class="fa fa-phone highlight rightpadding_5" aria-hidden="true"></i> +22378478742
+						</span> </div> <span class="teaser darklinks">
+						<i class="fa fa-envelope highlight rightpadding_5" aria-hidden="true"></i> <a href="mailto:support@telicards.com">support@telicards.com</a>
+					</span> </div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<header class="page_header_side ds"> <span class="toggle_menu_side header-slide"><span></span></span>
+				<div class="scrollbar-macosx">
+					<div class="side_header_inner">
+						<div class="text-center"> <a href="./" class="logo top_logo vertical_logo">
+                    <img src="{{domaine}}/util/images/logo.png" alt="">
+                    
+                </a> </div>
+						<div class="header-side-menu darklinks">
+							<!-- main side nav start -->
+							<nav class="mainmenu_side_wrapper">
+								<ul class="nav menu-side-click">
+									<li class="active"> <a href="/">Retour</a></li>
+									<li> <a href="about.html">Nouvelle espaces</a></li>									
+								</ul>
+							</nav>
+						</div>
+						<div class="side_header_social"> <span>
+		            <a href="#" class="social-icon color-bg-icon rounded-icon socicon-facebook"></a>
+		            <a href="#" class="social-icon color-bg-icon rounded-icon socicon-twitter"></a>
+		            <a href="#" class="social-icon color-bg-icon rounded-icon socicon-google"></a>
+		        </span> </div>
+					</div>
+				</div>
+			</header>
+			 {% block body %}{% endblock %}
+			<footer class="page_footer ds ms section_padding_top_50 section_padding_bottom_10">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<div class="logo vertical_logo"> <img src="images/logo.png" alt=""> </div>
+							<ul class="topmargin_40 inline-content small-text darklinks">
+								<li> <a href="#0" class="socicon-facebook text-icon">Facebook</a> </li>
+								<li> <a href="#0" class="socicon-twitter text-icon">Twitter</a> </li>
+								<li> <a href="#0" class="socicon-instagram text-icon">Instagram</a> </li>
+								<li> <a href="#0" class="socicon-google text-icon">Google</a> </li>
+								<li> <a href="#0" class="socicon-youtube text-icon">Youtube</a> </li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<section class="page_copyright ds section_padding_top_65 section_padding_bottom_65">
+				<div class="container">
+					<div class="row flex-wrap v-center">
+						<div class="col-xs-12 col-sm-6 text-center text-sm-left">
+							<div class="logo"> <img src="{{domaine}}/util/images/logo-footer.png" alt=""> </div>
+						</div>
+						<div class="col-xs-12 col-sm-6 text-center text-sm-right">
+							<div class="inline-content"><span>&copy; Copyright 2018 All Rights Reserved</span><span class="grey darklinks"><a href="#">Privacy Policy</a> | <a href="#">Legal</a></span></div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<!-- eof #box_wrapper -->
+	</div>
+	<!-- eof #canvas -->
+	<script src="{{domaine}}/util/js/compressed.js"></script>
+	<script src="{{domaine}}/util/js/selectize.min.js"></script>
+	<script src="{{domaine}}/util/js/main.js"></script>
+</body>
+
+</html>

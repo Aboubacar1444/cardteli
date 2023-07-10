@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<title>Carte - Teliman</title>
+	<meta charset="utf-8">
+	<!--[if IE]>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<![endif]-->
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="stylesheet" href="{{domaine}}/util/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{domaine}}/util/css/animations.css">
+	<link rel="stylesheet" href="{{domaine}}/util/css/fonts.css">
+	<link rel="stylesheet" href="{{domaine}}/util/css/main.css" class="color-switcher-link">
+	<link rel="stylesheet" href="{{domaine}}/util/css/shop.css" class="color-switcher-link">
+	<script src="{{domaine}}/util/js/vendor/modernizr-2.6.2.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="js/vendor/html5shiv.min.js"></script>
+		<script src="js/vendor/respond.min.js"></script>
+		<script src="js/vendor/jquery-1.12.4.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<!--[if lt IE 9]>
+		<div class="bg-danger text-center">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" class="highlight">upgrade your browser</a> to improve your experience.</div>
+	<![endif]-->
+	<div class="preloader">
+		<div class="preloader_image"></div>
+	</div>
+	<!-- search modal -->
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="search_modal" id="search_modal"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">
+			<i class="rt-icon2-cross2"></i>
+		</span>
+	</button>
+		<div class="widget widget_search">
+			<form method="get" class="searchform search-form form-inline" action="./">
+				<div class="form-group bottommargin_0"> <input type="text" value="" name="search" class="form-control" placeholder="Search keyword" id="modal-search-input"> </div> <button type="submit" class="theme_button color1 no_bg_button">Search</button> </form>
+		</div>
+	</div>
+	<!-- Unyson messages modal -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="messages_modal">
+		<div class="fw-messages-wrap ls with_padding">
+			<!-- Uncomment this UL with LI to show messages in modal popup to your user: -->
+			<!--
+		<ul class="list-unstyled">
+			<li>Message To User</li>
+		</ul>
+		-->
+		</div>
+	</div>
+	<!-- eof .modal -->
+	<!-- wrappers for visual page editor and boxed version of template -->
+	<div id="canvas">
+		<div id="box_wrapper">
+			<!-- template sections -->
+			<header class="page_header header_v1 header_white toggler_right animatable">
+				<div class="container-fluid">
+					<div class="row flex-wrap v-center">
+						<div class="col-xs-9 col-sm-8 col-lg-4">
+							<div class="ds teasers-wrapper affix-hidden">
+								<div class="inline-content big-spacing">
+									<div>
+										<div class="small-text highlightlinks"><a href="mailto:conctact@ct.com">conctact@ct.com</a></div>
+										<div class="big grey">+223 78478742</div>
+									</div>
+									<div>
+										<div class="small-text highlight">Monday - Friday</div>
+										<div class="big grey">09.00 - 19.00</div>
+									</div>
+								</div>
+							</div>
+							<div class="affix-visible">
+								<div class="display-flex v-center">
+									<div class="ds logo_wrapper"> <a href="./" class="logo">
+                                <img src="{{domaine}}/util/images/logo.png2" alt="">
+                            </a> </div>
+									<div class="logo_info_wrapper">
+										<div class="inline-content fontsize_20 regular grey darklinks hidden-xs hidden-sm text-right"> <span>+223 78478742</span> <span><a href="mailto:conctact@ct.com">conctact@ct.com</a></span> </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-3 col-sm-4 col-lg-8 text-right with_toggler">
+							<div class="header_mainmenu">
+								<!-- main nav start -->
+								<nav class="mainmenu_wrapper">
+									<ul class="mainmenu nav sf-menu">
+										<li class="active"> <a href="/">Accueil</a>
+										</li>
+										<li> <a href="{{path('app_modeles')}}">Modèle de carte</a></li>
+										<li> <a href="{{path('app_login')}}">Compte</a>
+											<ul>
+												<li> <a href="{{path('app_login')}}">Connexion</a> </li>
+												<li> <a href="{{path('app_register')}}">Inscription</a> </li>
+											</ul>
+										</li>
+										<li> <a href="contact.html">Contact</a></li>
+									</ul>
+								</nav>
+								<!-- eof main nav -->
+								<!-- header toggler --><span class="toggle_menu"><span></span></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+		    {% block body %}{% endblock %}
+			<footer class="page_footer ds light columns_margin_0">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="display-flex page_social"> <a href="#" class="social-icon bg-icon text-icon socicon-facebook">
+						<span>
+							<span class="social-icon border-icon rounded-icon socicon-facebook"></span>
+							<span class="social-label">facebook</span>
+						</span>
+					</a> <a href="#" class="social-icon bg-icon text-icon socicon-twitter">
+						<span>
+							<span class="social-icon border-icon rounded-icon socicon-twitter"></span>
+							<span class="social-label">twitter</span>
+						</span>
+					</a> <a href="#" class="social-icon bg-icon text-icon socicon-googleplus">
+						<span>
+							<span class="social-icon border-icon rounded-icon socicon-googleplus"></span>
+							<span class="social-label">Google+</span>
+						</span>
+					</a> <a href="#" class="social-icon bg-icon text-icon socicon-youtube">
+						<span>
+							<span class="social-icon border-icon rounded-icon socicon-youtube"></span>
+							<span class="social-label">youtube</span>
+						</span>
+					</a> <a href="#" class="social-icon bg-icon text-icon socicon-instagram">
+						<span>
+							<span class="social-icon border-icon rounded-icon socicon-instagram"></span>
+							<span class="social-label">instagram</span>
+						</span>
+					</a> </div>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<section class="page_copyright ds section_padding_top_65 section_padding_bottom_65">
+				<div class="container">
+					<div class="row flex-wrap v-center">
+						<div class="col-xs-12 col-sm-6 text-center text-sm-left">
+							<div class="logo"> <img src="{{domaine}}/util/images/logo-footer.png" alt=""> </div>
+						</div>
+						<div class="col-xs-12 col-sm-6 text-center text-sm-right">
+							<div class="inline-content"><span>&copy; Copyright 2023 All Rights Reserved</span><span class="grey darklinks"><a href="#">Privacy Policy</a> | <a href="#">Legal</a></span></div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+		</div>
+		<!-- eof #box_wrapper -->
+	</div>
+	<!-- eof #canvas -->
+	<script src="{{domaine}}/util/js/compressed.js"></script>
+	<script src="{{domaine}}/util/js/selectize.min.js"></script>
+	<script src="{{domaine}}/util/js/main.js"></script>
+	<script>
+		$('#delete_appointment').modal('show')
+	</script>
+</body>
+
+</html>

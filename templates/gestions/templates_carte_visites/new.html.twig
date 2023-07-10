@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Template Carte{% endblock %}
+{% block stylesheets %}
+ 	<link rel="stylesheet" type="text/css" href="{{domaine}}/assets/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="{{domaine}}/assets/css/bootstrap-datetimepicker.min.css">
+{% endblock %}
+{% block body %}
+   <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <h4 class="page-title">Ajouter un modèle</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                       {{ form_start(form) }}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+										<label>Nom de la carte</label>
+										{{ form_widget(form.titres) }}
+									</div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Type</label>
+                                       {{ form_widget(form.types) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Images</label>
+                                {{ form_widget(form.images) }}
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                {{ form_widget(form.descriptions) }}
+                            </div>
+                            <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn">Ajouter</button>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+            {{ include('notification.html.twig') }}
+        </div>
+{% endblock %}
+ {% block javascripts %}
+    <script src="{{domaine}}/assets/js/jquery.slimscroll.js"></script>
+    <script src="{{domaine}}/assets/js/select2.min.js"></script>
+	<script src="{{domaine}}/assets/js/moment.min.js"></script>
+	<script src="{{domaine}}/assets/js/bootstrap-datetimepicker.min.js"></script>
+{% endblock %}
