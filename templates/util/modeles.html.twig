@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="page_breadcrumbs cs gradient lightened section_padding_50">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h1>Des modèles de carte</h1>
+				<ol class="breadcrumb darklinks">
+					<li> <a href="/">Accuiel</a> </li>
+					<li class="active"> <span>Modèles de carte</span> </li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="ls section_padding_top_150 section_padding_bottom_150 columns_padding_30">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-8 col-lg-8 col-md-push-4 col-lg-push-4">
+				<div class="shop-sorting">
+					<form class="content-justify v-center v-spacing content-margins">
+						{# <div> Affichage des résultats 1-6 sur 36 </div> #}
+						<div class="form-group bottommargin_0"> <select aria-required="true" id="date" name="date">
+					<option value="">Sort by</option>
+					<option value="default">Default Sorting</option>
+					<option value="value">by Value</option>
+					<option value="date">by Date</option>
+					<option value="popular">by Popularity</option>
+				</select> </div>
+					</form>
+				</div>
+				<div class="columns-2">
+					<ul id="products" class="products list-unstyled">
+						{% for modele in modeles.data %}
+							<li class="product type-product">
+								<div class="with-corner-label">
+									<article class="vertical-item content-padding big-padding with_shadow text-center">
+										<div class="item-media-wrap">
+											<div class="item-media"> <a href="{{ path('app_modeles-details',{'url': modele.codes|url_encode ~'-'~ modele.url|url_encode}) }}"><img src="{{domaine}}/assets/img/templatesCartes/{{modele.photoCouvertures}}" alt="" /></a> </div>
+											{% if modele.new  == true %}
+												<div class="corner-label new">Nouveau</div>
+											{% endif %}
+										</div>
+										<div class="item-content">
+											<h3 class="entry-title"> <a href="{{path('app_modeles-details',{'url': modele.codes|url_encode ~'-'~ modele.url|url_encode}) }}">{{modele.titres}}</a> </h3>
+											<div class="star-rating" title="Rated 3.0 out of 5"> <span style="width:60%">
+										<strong class="rating">5</strong> out of 5
+									</span> </div>
+											<div class="price"> <span class="amount">{{modele.types}}</span> </div>
+											<p class="topmargin_20"> <a href="{{path('app_modeles-details',{'url': modele.codes|url_encode ~'-'~ modele.url|url_encode}) }}" class="theme_button block_button add_to_cart">Voir</a> </p>
+										</div>
+									</article>
+								</div>
+							</li>
+						{% endfor %}
+						{% set path = 'app_modeles' %}
+						{% set pages = modeles.pages  %}
+						{% set currentPage = modeles.page  %}	
+						
+					</ul>
+				</div> 
+				<!-- eof .columns-* -->
+			
+				{% if pages > 1 %}
+					<div class="text-center topmargin_30">
+						<ul class="pagination">
+							{% if currentPage > 1 %} 
+								<li><a href="{{path(path,{page:currentPage - 1})}}"><span class="sr-only">Prev</span><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+							{% else %}
+								<li  class="disabled"><a href=""><span class="sr-only">Prev</span><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+							{% endif %}
+							{% for page in 1..pages %}
+							<li  class="{{(page == currentPage)? 'active':''}} " ><a href="{{path(path,{page:page})}}">{{page}}</a></li>
+							{% endfor %}
+							{% if currentPage <  pages %} 
+								<li><a href="{{path(path,{page:currentPage + 1})}}"><span class="sr-only">Next</span><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+							{% else %}
+								<li class="disabled"><a href="#"><span class="sr-only">Next</span><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+							{% endif %}
+						</ul>
+					</div>
+				{% endif %}
+				
+			</div>
+			<aside class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-md-pull-8 col-lg-pull-8 col-sm-offset-3 col-md-offset-0">
+				<div class="ds gradient lightened with_padding">
+					<div class="widget widget_search">
+						<h3 class="widget-title black">Search Product</h3>
+						<form method="get" class="searchform" action="./">
+							<div class="form-group margin_0"> <label class="sr-only" for="widget-search">Search for:</label> <input id="widget-search" type="text" value="" name="search" class="form-control" placeholder="Search here"> </div> <button type="submit" class="theme_button no_bg_button">Search</button>										</form>
+					</div>
+				</div>
+				<div class="widget widget_categories">
+					<h3 class="widget-title">Catégories</h3>
+					<ul class="greylinks">
+						<li> <a href="shop.html">Carte personelle</a> <span>/ 34 /</span></li>
+						<li> <a href="shop.html">Carte Professionnelle</a> <span>/ 27 /</span></li>
+					</ul>
+				</div>
+				<div class="widget widget_top_rated_products">
+					<h3 class="widget-title">Meilleures cartes</h3>
+					<ul class="media-list product_list_widget media_items_list">
+						<li class="media"> <a class="media-left media-middle" href="shop-product.html">
+			<img class="media-object muted_background" src="{{domaine}}/util/images/shop/04.jpg" alt="">
+		</a>
+							<div class="media-body media-middle">
+								<p class="darklinks"> <a href="shop-product.html">Trainwreck</a> </p>
+								<div class="star-rating  small-stars" title="Rated 4.00 out of 5"> <span style="width:90%">
+					<strong class="rating">4.00</strong> out of 5
+				</span> </div>
+								<div class="price"> <span class="amount">$49.00</span> </div>
+							</div>
+						</li>
+						<li class="media"> <a class="media-left media-middle" href="shop-product.html">
+			<img class="media-object muted_background" src="{{domaine}}/util/images/shop/05.jpg" alt="">
+		</a>
+							<div class="media-body media-middle">
+								<p class="darklinks"> <a href="shop-product.html">AK-47</a> </p>
+								<div class="star-rating small-stars" title="Rated 3.00 out of 5"> <span style="width:60%">
+					<strong class="rating">3.00</strong> out of 5
+				</span> </div>
+								<div class="price"> <del>
+					<span class="amount">$125.00</span>
+				</del> <ins>
+					<span class="amount">$99.00</span>
+				</ins> </div>
+							</div>
+						</li>
+						<li class="media"> <a class="media-left media-middle" href="shop-product.html">
+			<img class="media-object muted_background" src="{{domaine}}/util/images/shop/06.jpg" alt="">
+		</a>
+							<div class="media-body media-middle">
+								<p class="darklinks"> <a href="shop-product.html">White Window</a> </p>
+								<div class="star-rating  small-stars" title="Rated 2.00 out of 5"> <span style="width:40%">
+					<strong class="rating">2.00</strong> out of 5
+				</span> </div>
+								<div class="price"> <del>
+					<span class="amount">$46.00</span>
+				</del> <ins>
+					<span class="amount">$33.00</span>
+				</ins> </div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</aside>
+			<!-- eof aside sidebar -->
+		</div>
+	</div>
+</section>
+<section id="subscribe" class="cs gradient lightened section_padding_top_90 section_padding_bottom_90 columns_padding_30 columns_margin_bottom_40">
+	<div class="container">
+		<div class="row flex-wrap v-center">
+			<div class="col-xs-12 col-sm-6 text-center text-sm-left">
+				<h2 class="section_header">Newsletter</h2>
+				<p class="under_heading grey">subscribe</p>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<div class="widget widget_mailchimp">
+					<form class="signup" action="./" method="get">
+						<div class="form-group margin_0"> <input class="mailchimp_email form-control" name="email" type="email" placeholder="Email Address"> </div> <button type="submit" class="theme_button color1 no_bg_button">Subscribe</button>
+						<div class="response"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

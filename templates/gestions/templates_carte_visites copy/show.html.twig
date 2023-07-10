@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TemplatesCarteVisites{% endblock %}
+
+{% block body %}
+    <h1>TemplatesCarteVisites</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ templates_carte_visite.id }}</td>
+            </tr>
+            <tr>
+                <th>Titres</th>
+                <td>{{ templates_carte_visite.titres }}</td>
+            </tr>
+            <tr>
+                <th>Descriptions</th>
+                <td>{{ templates_carte_visite.descriptions }}</td>
+            </tr>
+            <tr>
+                <th>Visibilites</th>
+                <td>{{ templates_carte_visite.visibilites ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Commandes</th>
+                <td>{{ templates_carte_visite.commandes }}</td>
+            </tr>
+            <tr>
+                <th>DateAjout</th>
+                <td>{{ templates_carte_visite.dateAjout ? templates_carte_visite.dateAjout|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Images</th>
+                <td>{{ templates_carte_visite.images }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_templates_carte_visites_index') }}">back to list</a>
+
+    <a href="{{ path('app_templates_carte_visites_edit', {'id': templates_carte_visite.id}) }}">edit</a>
+
+    {{ include('templates_carte_visites/_delete_form.html.twig') }}
+{% endblock %}

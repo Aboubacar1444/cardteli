@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<section class="page_breadcrumbs cs gradient lightened section_padding_50">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1>Offres</h1>
+                <ol class="breadcrumb darklinks">
+                    <li> <a href="./">Accueil</a> </li>
+                    <li class="active"> <span>Offres</span> </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ls section_padding_top_150 section_padding_bottom_150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="isotope_container isotope row masonry-layout columns_margin_bottom_20">
+                    <div class="isotope-item col-xs-12 col-sm-6">
+                        <article class="with_padding big-padding with_shadow">
+                            <div class="teaser text-center"> <img src="{{domaine}}/util/images/services-icons/01.png" alt="">
+                                <h3 class="entry-title small">Carte de Visite Physique</h3>
+                                <p>La carte Teliman offre un large choix de modèles de cartes de visite personnalisables sur notre site. Les utilisateurs peuvent imprimer leur carte à moindre coût avec leurs propres informations.</p> <a href="{{ path('app_offres-detail',{'offres':'carte-visite-physique'})}}" class="more-link">EN SAVOIR PLUS</a> </div>
+                        </article>
+                    </div>
+                    <div class="isotope-item col-xs-12 col-sm-6">
+                        <article class="with_padding big-padding with_shadow">
+                            <div class="teaser text-center"> <img src="{{domaine}}/util/images/services-icons/02.png" alt="">
+                                <h3 class="entry-title small">Carte de Visite Virtuelle</h3>
+                                <p>Vel brute labore deserunt id, et qui nobis volumus expetendis, eu vis congue legendos contentiones. Ex qui epicurei mandamus elaboraret.</p> <a href="{{ path('app_offres-detail',{'offres':'carte-visite-virtuelle'})}}" class="more-link">EN SAVOIR PLUS</a> </div>
+                        </article>
+                    </div>
+                    <div class="isotope-item col-xs-12 col-sm-6">
+                        <article class="with_padding big-padding with_shadow">
+                            <div class="teaser text-center"> <img src="{{domaine}}/util/images/services-icons/03.png" alt="">
+                                <h3 class="entry-title small">Site Vitrine</h3>
+                                <p>Le site web vitrine offre une présence en ligne personnalisable avec des informations sur les produits/services. pour promouvoir l'entreprise ou l'activité professionnelle.</p> <a href="{{ path('app_offres-detail',{'offres':'site-vitrine'})}}" class="more-link">EN SAVOIR PLUS</a> </div>
+                        </article>
+                    </div>
+                    <div class="isotope-item col-xs-12 col-sm-6">
+                        <article class="with_padding big-padding with_shadow">
+                            <div class="teaser text-center"> <img src="{{domaine}}/util/images/services-icons/04.png" alt="">
+                                <h3 class="entry-title small">Système de messagerie</h3>
+                                <p>L'envoi de messages avec un "Sender Name" au nom de l'entreprise renforce sa notoriété et image de marque, favorisant la fidélité des clients et les incitant à revenir pour leurs besoins futurs.</p> <a href="{{ path('app_offres-detail',{'offres':'Systeme-messagerie'})}}" class="more-link">EN SAVOIR PLUS</a> </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="subscribe" class="cs gradient lightened section_padding_top_90 section_padding_bottom_90 columns_padding_30 columns_margin_bottom_40">
+    <div class="container">
+        <div class="row flex-wrap v-center">
+            <div class="col-xs-12 col-sm-6 text-center text-sm-left">
+                <h2 class="section_header">Newsletter</h2>
+                <p class="under_heading grey">subscribe</p>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="widget widget_mailchimp">
+                    <form class="signup" action="./" method="get">
+                        <div class="form-group margin_0"> <input class="mailchimp_email form-control" name="email" type="email" placeholder="Email Address"> </div> <button type="submit" class="theme_button color1 no_bg_button">Subscribe</button>
+                        <div class="response"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

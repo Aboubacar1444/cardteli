@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section id="contact-form" class="ds gradient lightened section_padding_top_150 section_padding_bottom_150">
+    <div class="skew-overlay right"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center text-sm-left">
+                <h2 class="section_header">Connexion</h2>
+                <p class="under_heading grey">Vivez une expériance unique</p>
+                <div class="toppadding_5"></div>
+                
+                <form method="post" class=" row columns_margin_bottom_20" >
+                 {% if error %}
+                    <span class="contact-form-respond highlight">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+                {% endif %}
+
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="form-group"> <label for="email">Nom d'utilisateur</label> <input type="email" aria-required="true" size="30" value="{{ last_username }}" name="email" id="name" class="form-control" placeholder="Nom d'utilisateur"> </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="form-group"> <label for="password">Mot de passe</label> <input type="password" aria-required="true" size="30"  name="password" id="password" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required> </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-8">
+                        <a href="#"><span class="highlight">Mot de passe oublier</span></a>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="contact-form-submit"> <button type="submit" id="contact_form_submit" name="" class="theme_button color1 min_width_button margin_0">Connexion</button> </div>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="testimonials" class="ls section_padding_top_140">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 margin_0">
+                <div class="row testimonials-two-owls">
+                    <div class="col-xs-12 col-sm-7 col-lg-6 col-sm-push-5 col-lg-push-6 text-center text-sm-left">
+                        <div class="owl-carousel tml-content bottom-nav" data-responsive-lg="1" data-responsive-md="1" data-responsive-sm="1" data-nav="true">
+                            <blockquote> <cite>Robert Oliphant / Businessman</cite>
+                                <p>Great office. Very professional and helpful. Finwiz have been such a great asset to myself and my family.</p>
+                            </blockquote>
+                            <blockquote> <cite>Hugo Dukes / Investor</cite>
+                                <p>Without a doubt the most beneficial decision I've made. Cannot say enough great things about Finwiz.</p>
+                            </blockquote>
+                            <blockquote> <cite>Tamra Loucks / Student</cite>
+                                <p>Very professional and helpful people. They respond to my questions and emails very promptly.</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-lg-6 col-sm-pull-7 col-lg-pull-6 bottommargin_0">
+                        <div class="owl-carousel tml-avatars" data-responsive-lg="1" data-responsive-md="1" data-responsive-sm="1" data-animate-in="fadeIn" data-animate-out="fadeOut" data-mouse-drag="false" data-touch-drag="false">
+                            <div class="avatar"> <img src="{{domaine}}/util/images/testimonials/01.png" alt=""> </div>
+                            <div class="avatar"> <img src="{{domaine}}/util/images/testimonials/02.png" alt=""> </div>
+                            <div class="avatar"> <img src="{{domaine}}/util/images/testimonials/03.png" alt=""> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

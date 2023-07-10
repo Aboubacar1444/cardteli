@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_templates_carte_visites_delete', {'id': templates_carte_visite.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ templates_carte_visite.id) }}">
+    <button class="btn">Delete</button>
+</form>

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<section class="page_breadcrumbs cs gradient lightened section_padding_50">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1>A propos de nos services</h1>
+                <ol class="breadcrumb darklinks">
+                    <li> <a href="./">Accueil</a> </li>
+                    <li> <a href="{{ path('app_offres') }}">Nos Offres</a> </li>
+                    <li class="active"> <span>Offres detailles</span> </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ls section_padding_top_150 section_padding_bottom_150 columns_margin_bottom_0">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <article class="vertical-item content-padding big-padding with_shadow text-center">
+                    <div class="item-media-wrap">
+                        <div class="item-media"> <img src="{{domaine}}/util/images/blog/13.jpg" alt=""> </div>
+                    </div>
+                    <div class="item-content">
+                        <h1 class="entry-title">Carte Teliman</h1>
+                        <div class="entry-content">
+                            <p>Proposer un service de carte de visite avec un site web vitrine, un accès aux informations via USSD et un service d'envoi de messages personnalisés en masse serait une excellente idée pour les personnes qui cherchent à promouvoir leur entreprise ou leur activité professionnelle de manière efficace.
+                            <p>Le service de carte de visite permettrait aux utilisateurs de créer des cartes de visite numériques en plus des cartes de visite physique, qui peuvent être partagées facilement avec des clients potentiels ou des partenaires commerciaux. Les cartes de visite numériques incluraient des informations telles que le nom, le logo, les coordonnées, les services proposés et les horaires d'ouverture.</p>
+                            <p>Le site web vitrine permettrait aux utilisateurs de créer une présence en ligne pour leur entreprise ou leur activité professionnelle. Le site web vitrine serait personnalisable en fonction des besoins des utilisateurs et pourrait inclure des informations sur les produits ou services proposés, des témoignages de clients, des photos, des vidéos, etc.</p>
+                            <p>L'accès aux informations via USSD serait un autre avantage important de ce service de carte de visite. Les utilisateurs pourraient accéder aux informations de leur carte de visite numérique via un simple code USSD sur leur téléphone portable et recevrons également un message SMS avec les informations, utile pour les utilisateurs qui n'ont pas accès à Internet ou qui ne disposent pas d'un smartphone. Ce qui permettrait aux clients potentiels d'obtenir des informations importantes sur l'entreprise ou l'activité professionnelle en question, même s'ils n'ont pas accès à Internet.</p>
+                            <p>L'envoi de messages en masse avec un "Sender Name" au nom de l'entreprise présente plusieurs avantages importants pour les entreprises qui cherchent à communiquer avec leurs clients ou leurs prospects.</p>
+                            <p>Tout d'abord, l'utilisation d'un Sender Name au nom de l'entreprise permet de renforcer la notoriété et l'image de marque de l'entreprise. En effet, lorsque les clients reçoivent un message au nom de l'entreprise, cela leur rappelle l'existence de l'entreprise et peut les encourager à penser à elle la prochaine fois qu'ils auront besoin de ses produits ou services.. </p>
+                        </div>
+                        <div class="share-buttons topmargin_30"> <a class="social-icon color-icon border-icon rounded-icon socicon-facebook" href="#" title="Facebook"></a> <a class="social-icon color-icon border-icon rounded-icon socicon-twitter" href="#" title="Twitter"></a> <a class="social-icon color-icon border-icon rounded-icon socicon-googleplus"
+                                href="#" title="Google Plus"></a> </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
