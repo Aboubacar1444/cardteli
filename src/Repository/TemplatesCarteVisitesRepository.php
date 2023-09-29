@@ -81,6 +81,37 @@ class TemplatesCarteVisitesRepository extends ServiceEntityRepository
         return $result;
     }
 
+    public function findModelesBySearch(string $modele, int $page, int $limit = 6): array
+    {
+        $limit = abs($limit);
+
+        $result = [];
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->select('t')
+            ->from('App\Entity\TemplatesCarteVisites', 't')
+            ->where('t.titres LIKE :modele')
+            ->orWhere('t.descriptions LIKE :modele')
+            ->setParameter('modele', "%$modele%")
+            ->setMaxResults($limit)
+            ->setFirstResult(($page * $limit) - $limit);
+        $paginator = new Paginator($query);
+        $data = $paginator->getQuery()->getResult();
+
+        if (empty($data)) {
+            return $result;
+        }
+
+        $pages = ceil($paginator->count() / $limit);
+
+        $result['data'] = $data;
+        $result['pages'] = $pages;
+        $result['page'] = $page;
+        $result['limit '] = $limit;
+
+        // dd($query->getQuery()->getResult());
+        return $result;
+    }
+
 
 
 

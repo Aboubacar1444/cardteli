@@ -33,6 +33,9 @@ class Packs
     #[ORM\OneToMany(mappedBy: 'packs', targetEntity: PacksAvantages::class)]
     private Collection $packsAvantages;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $commandes = null;
+
     public function __construct()
     {
         $this->packsAvantages = new ArrayCollection();
@@ -129,6 +132,18 @@ class Packs
                 $packsAvantage->setPacks(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCommandes(): ?int
+    {
+        return $this->commandes;
+    }
+
+    public function setCommandes(?int $commandes): self
+    {
+        $this->commandes = $commandes;
 
         return $this;
     }

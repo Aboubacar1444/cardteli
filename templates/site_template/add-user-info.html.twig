@@ -1,0 +1,62 @@
+{% extends 'base-compte.html.twig' %}
+
+{% block title %}User info
+{% endblock %}
+
+{% block body %}
+
+	
+
+
+		{{ form_start(form) }}
+		<div class="row mt-5  mx-auto my-auto text-center">
+			<div class="form-group" id="billing_company_field">
+				<label for="billing_company" class="col-sm-3 control-label">
+					<span class="grey"></span>
+				</label>
+				<div class="col-sm-9 js-genus-scientist-wrapper mb-2" 
+                    data-prototype= "{{ form_widget(form.userInfoSiteTemplate.vars.prototype)|e('html_attr') }}"
+                    data-index="{{ form.userInfoSiteTemplate|length }}"
+                    >
+                    {% for input in form.userInfoSiteTemplate %}
+                    
+                    {% endfor %}
+                    
+                    <a href="#" class="js-genus-scientist-add">
+                        <span class="fa fa-plus-circle"></span>
+                        Ajouter un champ
+                    </a>
+				</div>
+			</div>
+            
+			<button class="btn">save</button>
+		</div>
+
+		{{ form_end(form) }}
+	
+
+	{# <a href="{{ path('app_espaces_show', {'id':app.request.get('id')}) }}">Retour</a> #}
+{% endblock %}
+{% block scriptP %}
+<script> 
+    $(function(){
+        var $wrapper = $('.js-genus-scientist-wrapper');
+            $wrapper.on('click', '.js-genus-scientist-add', function(e) {
+                e.preventDefault();
+
+                 // Get the data-prototype explained earlier
+                var prototype = $wrapper.data('prototype');
+                // get the new index
+                var index = $wrapper.data('index');
+                // Replace '__name__' in the prototype's HTML to
+                // instead be a number based on how many items we have
+                var newForm = prototype.replace(/__name__/g, index);
+                // increase the index with one for the next item
+                $wrapper.data('index', index + 1);
+                // Display the form in the page before the "new" link
+                $(this).before(newForm);
+            });
+    })
+</script>
+    
+{% endblock %}

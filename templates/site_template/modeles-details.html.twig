@@ -1,0 +1,183 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<section class="page_breadcrumbs cs gradient lightened section_padding_50">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h1>Détail Template</h1>
+					<ol class="breadcrumb darklinks">
+						<li>
+							<a href="/">Accueil</a>
+						</li>
+						<li>
+							<a href="{{path('app_modeles')}}">Modèles de site</a>
+						</li>
+						<li class="active">
+							<span>Détails</span>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="ls section_padding_top_150 section_padding_bottom_150 columns_padding_30">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-md-8 col-lg-8 col-md-push-4 col-lg-push-4">
+					<div itemscope="" itemtype="http://schema.org/Product" class="product type-product row columns_padding_30 columns_margin_bottom_30">
+						<div class="col-sm-12">
+							<div class="images text-center">
+								<a href="{{ asset('/assets/img/templatesCartes/' ~ template.previewImage ) }}" itemprop="image" class="woocommerce-main-image zoom prettyPhoto" data-gal="prettyPhoto[product-gallery]">
+									<img src="{{ asset('/assets/img/templatesCartes/' ~ template.previewImage ) }}" class="attachment-shop_single wp-post-image" alt="" title="">
+								</a>
+							</div>
+							<!--eof .images -->
+							<div class="thumbnails-wrap">
+								<div id="product-thumbnails" class="owl-carousel thumbnails product-thumbnails" data-margin="10" data-nav="false" data-dots="true" data-responsive-lg="4" data-responsive-md="4" data-responsive-sm="3" data-responsive-xs="2" data-responsive-xxs="2">
+									{% for tempImg in template.images %}
+										<a href="{{ asset('/assets/img/templatesCartes/' ~ tempImg ) }}" class="zoom first" title="{{template.name}}" data-gal="prettyPhoto[product-gallery]">
+											<img src="{{ asset('/assets/img/templatesCartes/' ~ tempImg ) }}" class="attachment-shop_thumbnail" alt="">
+										</a>
+									{% endfor %}
+
+								</div>
+							</div>
+							<!-- eof .images -->
+						</div>
+						<div class="summary entry-summary col-sm-12">
+							<h1 itemprop="name" class="product_title">{{ template.name }}</h1>
+							<div class="product-rating">
+								<span class="review-links pull-right greylinks">
+									<a href="#reviews" class="review-link">
+										(<span class="count">5</span>
+										customer review)
+									</a>
+								</span>
+								<div class="star-rating">
+									<span style="width:80%">
+										Rated
+										<strong class="rating">4.00</strong>
+										out of 5 based on
+										<span class="rating">5</span>
+										customer rating
+									</span>
+								</div>
+							</div>
+							
+							{# <div class="short-description">
+								<p>{{ template.descriptions }}.</p>
+							</div> #}
+
+							<div class="product_meta highlightlinks">
+								<ul class="list1 feature-list bottommargin_0">
+									<li>
+										<a href="{{template.previewUrl}}">
+											<span class="grey">{{ template.previewUrl }}:</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- .summary.col- -->
+					</div>
+
+					<div class="related-products">
+						<h2>Related Products</h2>
+						<div class="owl-carousel with_shadow_items" data-dots="false" data-nav="true" data-loop="true" data-autoplay="true" data-responsive-lg="2" data-responsive-md="2">
+							<div class="with-corner-label">
+								<article class="vertical-item content-padding big-padding with_shadow text-center">
+									<div class="item-media-wrap">
+										<div class="item-media">
+											<a href="shop-product.html"><img src="{{domaine}}/util/images/shop/02.jpg" alt=""/></a>
+										</div>
+										<div class="corner-label sale">sale</div>
+									</div>
+									<div class="item-content">
+										<h3 class="entry-title">
+											<a href="shop-product.html">Hoodie</a>
+										</h3>
+										<div class="star-rating" title="Rated 5.0 out of 5">
+											<span style="width:100%">
+												<strong class="rating">5.0</strong>
+												out of 5
+											</span>
+										</div>
+										<div class="price">
+											<del>
+												<span class="amount">$120.00</span>
+											</del>
+											<ins>
+												<span class="amount">$100.00</span>
+											</ins>
+										</div>
+										<p class="topmargin_20">
+											<a href="#" class="theme_button block_button add_to_cart">Add to cart</a>
+										</p>
+									</div>
+								</article>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<!--eof .col-sm-8 (main content)-->
+				<aside class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-md-pull-8 col-lg-pull-8 col-sm-offset-3 col-md-offset-0">
+					{# <div class="widget widget_categories">
+						<h3 class="widget-title">Categories</h3>
+						<ul class="greylinks">
+							<li>
+								<a href="shop.html">Picanha turducken</a>
+								<span>/ 34 /</span>
+								<ul>
+									<li>
+										<a href="shop.html">Tail Meatball</a>
+										<span>/ 15 /</span>
+									</li>
+									<li>
+										<a href="shop.html">Sausage Beef</a>
+										<span>/ 19 /</span>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="shop.html">Jowl Corned</a>
+								<span>/ 27 /</span>
+								<ul>
+									<li>
+										<a href="shop.html">Pork Chop</a>
+										<span>/ 15 /</span>
+									</li>
+									<li>
+										<a href="shop.html">Beef Pork Loin</a>
+										<span>/ 12 /</span>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#0">Ground Round</a>
+								<span>/ 38 /</span>
+							</li>
+						</ul>
+					</div> #}
+					<div class="widget widget_shopping_cart">
+						<h3 class="widget-title">Template</h3>
+						<div class="widget_shopping_cart_content">
+							
+							<p class="buttons">
+								
+									<a href="{{ path('app_espaces_show', parameters = {'id': app.request.get('espace'), 'siteTemplate': template.id}) }}" class="theme_button">
+										<i class="fa fa-check" aria-hidden="true"></i>
+										Choisir ce site
+									</a>
+							
+								{# <a href="shop-cart.html" class="theme_button color1">Paiement</a> #}
+							</p>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</section>
+	
+{% endblock %}

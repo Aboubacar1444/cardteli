@@ -45,6 +45,7 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setPays('Mali');
+            $user->setRoles(["ROLE_CLIENT"]);
             $user->setDateCreation(new \DateTime());
             $entityManager->persist($user);
             $entityManager->flush();

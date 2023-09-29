@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -59,6 +61,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateCreation = null;
+
+    #[ORM\OneToMany(mappedBy: 'User', targetEntity: Espaces::class)]
+    private Collection $espaces;
+
+    public function __construct()
+    {
+        $this->espaces = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -246,6 +256,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDateCreation(\DateTimeInterface $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Espaces>
+     */
+    public function getEspaces(): Collection
+    {
+        return $this->espaces;
+    }
+
+    public function addEspace(Espaces $espace): self
+    {
+        if (!$this->espaces->contains($espace)) {
+            $this->espaces->add($espace);
+            $espace->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEspace(Espaces $espace): self
+    {
+        if ($this->espaces->removeElement($espace)) {
+            // set the owning side to null (unless already changed)
+            if ($espace->getUser() === $this) {
+                $espace->setUser(null);
+            }
+        }
 
         return $this;
     }

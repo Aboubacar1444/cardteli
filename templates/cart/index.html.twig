@@ -1,0 +1,225 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<section class="page_breadcrumbs cs gradient lightened section_padding_50">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h1>Cart</h1>
+					<ol class="breadcrumb darklinks">
+						<li>
+							<a href="/">
+								Accueil
+							</a>
+						</li>
+						<li>
+							<a href="{{ path(app.session.get('productType') is same as 'cardonly' ? 'app_modeles' : 'app_home') }}">Produit</a>
+						</li>
+						<li class="active">
+							<span>Panier</span>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="ls section_padding_top_150 section_padding_bottom_150 columns_padding_30">
+		<div class="container">
+			<div
+				class="row">
+				<!-- <div class="col-xs-12 col-md-8 col-lg-8 col-md-push-4 col-lg-push-4"> -->
+				<div class="col-sm-12">
+					<div class="table-responsive">
+						<table class="table shop_table cart cart-table">
+							<thead>
+								<tr>
+									<td class="product-info">Product</td>
+									<td class="product-price-td">Price</td>
+									<td class="product-quantity">Quantity</td>
+									<td class="product-subtotal">Subtotal</td>
+									<td class="product-remove">&nbsp;</td>
+								</tr>
+							</thead>
+							<tbody>
+							{% if app.session.get('productType') is same as 'pack' %}
+								{% for cart in cart %}
+									<tr class="cart_item">
+										<td class="product-info">
+											<div class="media">
+												<div class="media-left">
+													<a href="shop-product.html">
+														<img class="media-object cart-product-image" src="{{asset('assets/img/templatesCartes/' ~ cart.product.nom )}}" alt="">
+													</a>
+												</div>
+												<div class="media-body">
+													<h4 class="media-heading">
+														<a href="shop-product.html">{{cart.product.nom}}</a>
+													</h4>
+													{# <span class="grey">Color:</span>
+													Black<br>
+													<span class="grey">Size:</span>
+													M #}
+												</div>
+											</div>
+										</td>
+										<td class="product-price">
+											<span class="amount">{{cart.product.montants}}</span>
+											<span class="currencies">XOF</span>
+										</td>
+										<td class="product-quantity">
+											<form  method="post">
+												<div class="quantity">
+												{% if cart.quantity >= 50 %}
+													<input type="button" value="-" class="minus"  onClick=" updateCart('minus',{{cart.product.id}}, 50)">
+													<i class="fa fa-angle-down" aria-hidden="true"></i>
+												{% endif %}
+												<input type="number" readonly disabled step="50" min="{{cart.quantity}}" max="500" name="productQte" value="{{cart.quantity}}" title="Qty" class="form-control">
+												{% if cart.quantity >= 50 %}	
+													<input type="button" value="+" class="plus" onClick="updateCart('plus', '{{cart.product.id}}', 50)">
+													<i class="fa fa-angle-up" aria-hidden="true"></i>
+												{% endif %}
+												</div>
+											</form>
+										</td>
+										<td class="product-subtotal">
+											<span class="amount">{{cart.product.montants * cart.quantity}}</span>
+											<span class="currencies">XOF</span>
+										</td>
+										<td class="product-remove">
+											<a href="{{ path('app_cart_delete', parameters = {'id':cart.product.id}) }}" class="remove fontsize_20" title="Remove this item">
+												<i class="fa fa-trash-o"></i>
+											</a>
+										</td>
+									</tr>
+								{% endfor %}
+							{% else %}
+								{% for cartData in cart %}
+									{% if cartData %}
+										<tr class="cart_item">
+											<td class="product-info">
+												<div class="media">
+													<div class="media-left">
+														<a href="shop-product.html">
+															<img class="media-object cart-product-image" src="{{asset('assets/img/templatesCartes/' ~ cartData.product.photoCouvertures )}}" alt="">
+														</a>
+													</div>
+													<div class="media-body">
+														<h4 class="media-heading">
+															<a href="shop-product.html">{{cartData.product.titres}}</a>
+														</h4>
+														{# <span class="grey">Color:</span>
+														Black<br>
+														<span class="grey">Size:</span>
+														M #}
+													</div>
+												</div>
+											</td>
+											<td class="product-price">
+												<span class="amount">{{cartData.product.price}}</span>
+												<span class="currencies">XOF</span>
+											</td>
+											<td class="product-quantity">
+												<form  method="post">
+													<div class="quantity">
+													{% if cartData.quantity >= 50 %}
+														<input type="button" value="-" class="minus"  onClick=" updateCart('minus',{{cartData.product.id}}, 50)">
+														<i class="fa fa-angle-down" aria-hidden="true"></i>
+													{% endif %}
+													<input type="number" step="50" min="{{cartData.quantity}}" max="500" name="productQte" value="{{cartData.quantity}}" title="Qty" class="form-control">
+													{% if cartData.quantity >= 50 %}	
+														<input type="button" value="+" class="plus" onClick="updateCart('plus', '{{cartData.product.id}}', 50)">
+														<i class="fa fa-angle-up" aria-hidden="true"></i>
+													{% endif %}
+													</div>
+												</form>
+											</td>
+											<td class="product-subtotal">
+												<span class="amount">{{cartData.product.price * cartData.quantity}}</span>
+												<span class="currencies">XOF</span>
+											</td>
+											<td class="product-remove">
+												<a href="{{ path('app_cart_delete', parameters = {'id':cartData.product.id}) }}" class="remove fontsize_20" title="Remove this item">
+													<i class="fa fa-trash-o"></i>
+												</a>
+											</td>
+										</tr>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+							</tbody>
+						</table>
+					</div>
+					<div class="cart-collaterals m-0 p-0">
+						<div class="cart_totals text-center">
+							<h3>Cart Totals</h3>
+							<table class="table">
+								<tbody>
+									<tr class="cart-subtotal">
+										<td>Cart Subtotal</td>
+										<td>
+											<span class="amount">{{total}}</span>
+											<span class="currencies">XOF</span>
+										</td>
+									</tr>
+									<tr class="shipping">
+										<td>Frais de livraison</td>
+										<td>Livraison gratuite</td>
+									</tr>
+									<tr class="order-total">
+										<td class="grey">Order Total</td>
+										<td>
+											<strong class="grey">
+												<span class="amount">{{total}}</span>
+												<span class="currencies">XOF</span>
+											</strong>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="cart-buttons text-center justify-content-center m-0">
+					{% if app.session.get('productType') is same as 'cardonly' %}
+						<a class="theme_button color1" href="{{ path('app_modeles') }}">Ajout d'autres cartes <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+						<a type="submit" class="theme_button" href="{{ path("app_checkout_cardonly") }}">Passer à la caisse <i class="fa fa-credit-card-alt" aria-hidden="true"></i></a>
+					{% else %}
+						<a type="submit" class="theme_button" href="{{ path("app_checkout_pack") }}">Passer à la caisse <i class="fa fa-credit-card-alt" aria-hidden="true"></i></a>
+					{% endif %}
+					</div>
+				</div>
+				<!--eof .col-sm-8 (main content)-->
+			</div>
+		</div>
+	</section>
+{% endblock %}
+	
+{% block scriptP %}
+	<script>
+		var qte = parseInt($("input[type=number]").val());
+		function updateCart(op, itemId, value){
+		 linkplus =  "{{path('app_cart_add', {'id':'itemIdd', 'product':'cardonly', 'value':'newvalue'})}}"
+		 linkminus = "{{path('app_cart_decrease', {'id':'itemIdd', 'product':'cardonly', 'value':'newvalue'})}}"
+			
+			if (op == "plus"){
+				linkplus = linkplus.replace("itemIdd", itemId);
+				linkplus = linkplus.replace("newvalue", value);
+				if(qte < 500) {
+					qte+=50;
+					window.location.href= linkplus
+				}else{
+					return false;
+				}
+				
+			}
+			if(op == 'minus'){
+				qte -=50;
+				
+				linkminus = linkminus.replace("itemIdd", itemId);
+				linkminus = linkminus.replace("newvalue", value);
+				
+
+				window.location.href= linkminus;
+			}
+		};
+	</script>
+	
+{% endblock %}

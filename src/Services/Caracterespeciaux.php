@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Extensions\Service;
+namespace App\Services;
 
 
 

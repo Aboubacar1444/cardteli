@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths">
 <head>
 	<title>Carte - Teliman</title>
 	<meta charset="utf-8">
@@ -9,12 +9,12 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="stylesheet" href="{{domaine}}/util/css/bootstrap.min.css">
-	<link rel="stylesheet" href="{{domaine}}/util/css/animations.css">
-	<link rel="stylesheet" href="{{domaine}}/util/css/fonts.css">
-	<link rel="stylesheet" href="{{domaine}}/util/css/main.css" class="color-switcher-link">
-	<link rel="stylesheet" href="{{domaine}}/util/css/shop.css" class="color-switcher-link">
-	<script src="{{domaine}}/util/js/vendor/modernizr-2.6.2.min.js"></script>
+	<link rel="stylesheet" href="{{asset('/util/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{asset('/util/css/animations.css')}}">
+	<link rel="stylesheet" href="{{asset('/util/css/fonts.css')}}">
+	<link rel="stylesheet" href="{{asset('/util/css/main.css')}}" class="color-switcher-link">
+	<link rel="stylesheet" href="{{asset('/util/css/shop.css')}}" class="color-switcher-link">
+	<script src="{{asset('/util/js/vendor/modernizr-2.6.2.min.js')}}"></script>
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
 		<script src="js/vendor/respond.min.js"></script>
@@ -98,6 +98,15 @@
 											</ul>
 										</li>
 										<li> <a href="contact.html">Contact</a></li>
+										
+										{% if app.session.get('cart')|length > 0 %}
+											<li> 
+												<a href="{{ path('app_cart') }}">
+													<i class="fa fa-shopping-bag"></i>
+													<span>{{ app.session.get('cart')|length }}</span>
+												</a>
+											</li>
+										{% endif %}
 									</ul>
 								</nav>
 								<!-- eof main nav -->
@@ -159,12 +168,18 @@
 		<!-- eof #box_wrapper -->
 	</div>
 	<!-- eof #canvas -->
-	<script src="{{domaine}}/util/js/compressed.js"></script>
-	<script src="{{domaine}}/util/js/selectize.min.js"></script>
-	<script src="{{domaine}}/util/js/main.js"></script>
+	<script src="{{ asset("./util/js/compressed.js") }}"></script>
+	<script src="{{ asset("./util/js/selectize.min.js") }}" ></script>
+	<script src="{{ asset("./util/js/main.js") }}"></script>
 	<script>
-		$('#delete_appointment').modal('show')
+		$(function() {
+			
+			$('#delete_appointment').modal('show');
+			
+		});
 	</script>
+	
+	
 </body>
 
 </html>

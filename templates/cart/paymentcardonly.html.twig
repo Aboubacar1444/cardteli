@@ -1,0 +1,233 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+	<section class="page_breadcrumbs cs gradient lightened section_padding_50">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h1>Paiement</h1>
+					<ol class="breadcrumb darklinks">
+						<li>
+							<a href="/">
+								Accueil
+							</a>
+						</li>
+						<li>
+							<a href="{{ path('app_modeles') }}">Cartes</a>
+						</li>
+						<li>
+							<a href="{{ path('app_cart' ) }}">Panier</a>
+						</li>
+						<li class="active">
+							<span>Paiement</span>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ls section_padding_top_150 section_padding_bottom_150 columns_padding_30">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-md-8 col-lg-8">
+					<h2 class="topmargin_20 text-uppercase">
+						Adresse de facturation
+					</h2>
+					<form class="form-horizontal checkout shop-checkout" role="form" method="post">
+						<div class="form-group">
+							<label for="billing_country-selectized" class="col-sm-3 control-label">
+								<span class="grey">Pays:</span>
+								<span class="required">*</span>
+							</label>
+							<div class="col-sm-9">
+								<select name="pays" id="billing_country" tabindex="-1" class="selectized" style="display: none;">
+									<option value="ML" selected="selected">Mali (ML)</option>
+									<option value="CI">Côte d'Ivoire (CI)</option>
+									<option value="SN">Sénégal (SN)</option>
+								</select>
+
+							</div>
+						</div>
+						<div class="form-group validate-required" id="billing_first_name_field">
+							<label for="billing_first_name" class="col-sm-3 control-label">
+								<span class="grey">Prénom:</span>
+								<span class="required">*</span>
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control " name="prenom" id="billing_first_name" placeholder="" value="">
+							</div>
+						</div>
+						<div class="form-group validate-required" id="billing_last_name_field">
+							<label for="billing_last_name" class="col-sm-3 control-label">
+								<span class="grey">Nom:</span>
+								<span class="required">*</span>
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control " name="nom" id="billing_last_name" placeholder="" value="">
+							</div>
+						</div>
+						<div class="form-group" id="billing_company_field">
+							<label for="billing_company" class="col-sm-3 control-label">
+								<span class="grey">Entreprise:</span>
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control " name="nom_enteprises" id="billing_company" placeholder="" value="">
+							</div>
+						</div>
+						<div class="form-group validate-required validate-email" id="billing_email_field">
+							<label for="billing_email" class="col-sm-3 control-label">
+								<span class="grey">E-mail</span>
+								<span class="required">*</span>
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control " name="email" id="billing_email" placeholder="" value="">
+							</div>
+						</div>
+						<div class="form-group validate-required validate-phone" id="billing_phone_field">
+							<label for="billing_phone" class="col-sm-3 control-label">
+								<span class="grey">Téléphone:</span>
+								<span class="required">*</span>
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control " name="telephones" id="billing_phone" placeholder="" value="">
+							</div>
+						</div>
+						<div class="form-group address-field validate-required" id="billing_address_fields">
+							<label for="billing_address_1" class="col-sm-3 control-label">
+								<span class="grey">Adresse:</span>
+								<span class="required">*</span>
+							</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" placeholder="Bamako, Kalaban Coura ACI rueXXX porteXXX" name="adresse" id="billing_address_1" placeholder="" value="">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-9">
+								<div class="checkbox text-lowercase">
+									<label>
+										<input type="checkbox" checked>
+										Créer un compte à partir de ses informations ?
+									</label>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!--eof .col-sm-8 (main content)-->
+					<!-- sidebar -->
+					<aside class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0 col-lg-4">
+						<h3 class="widget-title" id="order_review_heading">Récapitulatif</h3>
+						<div id="order_review" class="shop-checkout-review-order">
+							<table class="table shop_table shop-checkout-review-order-table">
+								<thead>
+									<tr>
+										<td class="product-name">Produit</td>
+										<td class="product-total">Total</td>
+									</tr>
+								</thead>
+								<tbody>
+									{% for cartData in cart %}
+										{% if cartData %}
+											<tr class="cart_item">
+												<td class="product-name">
+													{{cartData.product.titres}}
+													<span class="product-quantity">×
+														{{cartData.quantity}}
+													</span>
+													<input type="hidden" value="{{cartData.product.titres}}" name="reference"/>
+												</td>
+												<td class="product-total">
+													<span class="amount grey">{{cartData.product.price}}
+														XOF
+													</span>
+												</td>
+											</tr>
+										{% endif %}
+									{% endfor %}
+								</tbody>
+							</tbody>
+							<tfoot>
+								<tr class="cart-subtotal">
+									<td>Subtotal:</td>
+									<td>
+										<span class="amount grey">
+											{{total}}
+											XOF
+										</span>
+									</td>
+								</tr>
+								<tr class="shipping">
+									<td>Livraison:</td>
+									<td>
+										<span class="grey">Gratuite</span>
+									</td>
+								</tr>
+								<tr class="order-total">
+									<td>Total:</td>
+									<td>
+										<span class="amount grey">
+											<strong>{{total}}
+												XOF</strong>
+										</span>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+						<div id="payment" class="shop-checkout-payment">
+							<h3 class="widget-title">Paiement</h3>
+							<ul class="list1 no-bullets payment_methods methods">
+								{# <li class="payment_method_bacs">
+																	<div class="radio">
+																		<label for="payment_method_bacs">
+																			<input id="payment_method_bacs" class="" type="radio" name="payment_method" value="vbd" checked="checked">
+																			<span class="grey">Virement bancaire direct</span>
+																		</label>
+																	</div>
+																	<div
+																		class="payment_box payment_method_bacs"><p>Effectuez votre paiement directement sur notre compte bancaire. Veuillez utiliser votre ID de commande comme référence de paiement. Votre commande ne sera pas expédiée tant que les fonds n'auront pas été crédités sur notre compte.</p>
+																	</div>
+																</li> #}
+								{# <li class="payment_method_cheque">
+																	<div class="radio">
+																		<label for="payment_method_cheque">
+																			<input id="payment_method_cheque" class="" type="radio" name="payment_method" value="cheque">
+																			<span class="grey">Paiement par chèque</span>
+																		</label>
+																	</div>
+																</li> #}
+									<li class="payment_method_cheque"> <div class="radio">
+										<label for="payment_method_om">
+											<input id="payment_method_om" class="" type="radio" name="mode_paiement" value="OM">
+											<span class="grey">Paiement par Orange money</span>
+										</label>
+									</div>
+								</li>
+								<li class="payment_method_cheque">
+									<div class="radio">
+										<label for="payment_method_mm">
+											<input id="payment_method_mm" class="" type="radio" name="mode_paiement" value="MM">
+											<span class="grey">Paiement par Moov money</span>
+										</label>
+									</div>
+								</li>
+								<li class="payment_method_cheque">
+									<div class="radio">
+										<label for="payment_method_cheque">
+											<input id="payment_method_cheque" class="" type="radio" name="mode_paiement" value="cheque">
+											<span class="grey">Paiement à la livraison</span>
+										</label>
+									</div>
+								</li>
+							</ul>
+							<div class="place-order topmargin_30">
+								<button type="submit" class="theme_button color1 min_width_button" name="checkout_place_order" id="place_order">Passer la commande</button>
+							</div>
+						</div>
+					</form>
+				</tbody>
+			</div>
+		</aside>
+		<!-- eof aside sidebar -->
+	</div>
+</div></section>{% endblock %}

@@ -21,7 +21,9 @@ class Commandes
     private ?\DateTimeInterface $dateCommandes = null;
 
     #[ORM\Column]
-    private ?bool $statut = null;
+    // Passer commande = 0 (par defaut)
+    // Commande traité = 1
+    private ?bool $statut = false;
 
     #[ORM\Column(length: 20)]
     private ?string $modePaiement = null;
@@ -44,6 +46,9 @@ class Commandes
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $productType = null;
 
     public function getId(): ?int
     {
@@ -166,6 +171,18 @@ class Commandes
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getProductType(): ?string
+    {
+        return $this->productType;
+    }
+
+    public function setProductType(string $productType): self
+    {
+        $this->productType = $productType;
 
         return $this;
     }

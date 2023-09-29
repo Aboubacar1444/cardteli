@@ -1,6 +1,6 @@
 {% extends 'base-compte.html.twig' %}
 
-{% block title %}Hello ComptesController!{% endblock %}
+{% block title %}Dashboard {{"Numerotation"}}{% endblock %}
 
 {% block body %}
 <section class="ls section_padding_top_150 section_padding_bottom_150 colum_padding_30">
@@ -11,26 +11,39 @@
                     <div class="ds gradient lightened with_padding">
                         <div class="widget widget_search">
                             <h3 class="widget-title">Rechercher un numéro de 1 à 50000</h3>
-                            <form method="get" class="searchform" action="./">
-                                <div class="form-group margin_0"> <label class="sr-only"
-                                        for="widget-search">Search for:</label> <input id="widget-search"
-                                        type="text" value="" name="search" class="form-control"
-                                        placeholder="Search here"> </div> <button type="submit"
-                                    class="theme_button no_bg_button">Search</button>
+                            <form  class="">
+                                <div class="form-group margin_0"> 
+                                    <label class="sr-only" for="widget-search">Search for:</label> 
+                                    <input id="inputUssd" type="text" value="" name="search" class="form-control" placeholder="Tapez ici le numéro à joindre à votre espace"> 
+                                </div> 
+                                <button type="submit" class="theme_button no_bg_button" id="btnCheck">Rechercher</button>
                             </form>
                         </div>
+                        <p id="emptyError" class="alert-danger fw-bold d-none" ></p>
                     </div>
                 </article>
                  <article class="post event-item side-item side-sm content-padding with_shadow">
-                     <div class="row">
+                    <div class="row">
                         <div class="col-xs-12 text-center text-sm-left">
-            
-                                <div class="toppadding_5"></div>
-                               
-                             
 
-                            </div>
-                        </div>
+                                <div class="toppadding_5" id="response">
+                                    <div class="col-sm-12">
+							<div class="table-responsive">
+								<table id="responseTable" class="table shop_table cart cart-table" style="display:none">
+									<thead>
+										<tr>
+											<td class="product-info">Numero</td>
+											<td class="product-info">TypeNuméro</td>
+											<td class="product-price-td">Prix</td>
+											<td class="product-info">Disponibilité</td>
+											<td class="product-remove">&nbsp;</td>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>      
+                    </div>
                 </article>
                 
                 
@@ -39,4 +52,99 @@
         </div>
     </div>
 </section>
+{% endblock %}
+{% block scriptP %}
+    <script>
+        $(function(){
+           
+
+            $('#inputUssd').change(function(){
+                $("#emptyError").addClass('d-none');
+            })
+            $('form').submit(function (e){
+                e.preventDefault();
+                ussdToCheck = $('#inputUssd').val();
+                response = $("#response");
+
+                
+                if(ussdToCheck){
+                    data = {
+                        ussd: ussdToCheck,
+                    }
+                    $("#emptyError").addClass('d-none'); 
+                    $.ajax({
+                        url: "{{ path('app_numero_ussd', {'espaces':espace.id}) }}",
+                        dataType:'json',
+                        data:{ussd: ussdToCheck},
+                        type: 'POST',
+                        success: function (response) {
+                            var tr_str = "";
+                            for(var i=0; i<response.length; i++){
+                                console.log(response[i]);
+                                var numero_type = response[i].numerosType;
+                                var numero = response[i].numeros;
+                                var prix = response[i].prix;
+                                var disponibilite = response[i].disponibilites;
+                                
+                                
+                                var disponibliteText = disponibilite 
+                                    ? 
+                                    "<span class='badge badge-success bg-success'>Disponible</span>"
+                                    :
+                                    "<span class='badge badge-danger bg-danger'>Indisponible</span>";
+                                var prixText = prix == 0 ? "Gratuit" : prix;
+                                var linkAddToEspace = ""
+                                if(disponibilite && prix == 0){
+                                    linkAddToEspace = 
+                                        '<a href="{{ path("app_numero_ussd", {"espaces": espace.id, "choiceUssd":"choiced"})}}" class="remove fontsize_20" title="Ajouter ce numéro à mon espace">' + 
+                                            '<i class="fa fa-plus"></i>' + 
+                                        '</a>'
+                                   linkAddToEspace = linkAddToEspace.replace("choiced", numero);
+                                }
+                                else if (disponibilite && prix != 0){
+                                    linkAddToEspace = 
+                                        '<a href="#" class="remove fontsize_20" title="Ajouter ce numéro à mon espace">' + 
+                                            '<i class="fa fa-plus"></i>' + 
+                                        '</a>'
+                                }else {
+                                    linkAddToEspace = 
+                                    '<a href="#" class="remove fontsize_20">' + 
+                                        '-' + 
+                                    '</a>'
+                                }
+                                
+                                
+                                tr_str += "<tr class='cart_item fw-bold'>" +
+                                    "<td class='product-info'>" + 
+                                        '<div class="media">' + 
+                                        '	<div class="media-body">' + 
+                                        '	    <h4 class="media-heading"> ' + 
+                                        '            <a href="#">'+ numero +'</a> ' + 
+                                        '       </h4> ' + 
+                                        '   </div>    ' + 
+                                        '</div>' + 
+                                    "</td>" +
+                                    "<td class='product-info'>"   +   '<span class="badge badge-warning bg-yellow yellow">'+numero_type+'</span> ' + "</td>" +
+                                    "<td class='product-price'>"  +   '<span class="fw-bold ">'+prixText+'</span>' + "</td>" +
+                                    "<td class='product-info'>"   +   '<span class="fw-bold">'+disponibliteText+'</span>' + "</td>" +
+                                    "<td class='product-add'>" + 
+                                        linkAddToEspace + 
+                                    "</td>" +
+                                    "</tr>";
+                                $("tbody").html(tr_str);
+                                $("#responseTable").css('display', '');
+                            }
+                            
+                        },
+                        error: function (err) {
+                            response.append('FormData Object Send Failed:' + err)
+                        },
+                    }) 
+                }else{
+                    $("#emptyError").append("Veuillez renseigner le champ ci-dessus.");
+                    $("#emptyError").removeClass('d-none');
+                }
+            })
+        });
+    </script>
 {% endblock %}

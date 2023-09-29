@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Extensions\Service;
+namespace App\Services;
 
 
 
@@ -16,7 +16,6 @@ class ConnexionInternet
         } else {
             $statut = "Oui";
         };
-
         return $statut;
     }
 }

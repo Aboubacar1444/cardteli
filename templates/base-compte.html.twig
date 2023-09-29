@@ -4,7 +4,7 @@
 <!--<![endif]-->
 
 <head>
-	<title>Finwiz</title>
+	<title>{% block title %}{% endblock %}</title>
 	<meta charset="utf-8">
 	<!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -85,7 +85,7 @@
 							<nav class="mainmenu_side_wrapper">
 								<ul class="nav menu-side-click">
 									<li class="active"> <a href="/">Retour</a></li>
-									<li> <a href="about.html">Nouvelle espaces</a></li>									
+									<li> <a href="{{path('app_espaces_new')}}">Nouvelle espace</a></li>									
 								</ul>
 							</nav>
 						</div>
@@ -130,9 +130,14 @@
 		<!-- eof #box_wrapper -->
 	</div>
 	<!-- eof #canvas -->
-	<script src="{{domaine}}/util/js/compressed.js"></script>
-	<script src="{{domaine}}/util/js/selectize.min.js"></script>
-	<script src="{{domaine}}/util/js/main.js"></script>
+	<script src="{{ asset("./util/js/compressed.js") }}"></script>
+	<script src="{{ asset("./util/js/selectize.min.js") }}" ></script>
+	<script src="{{ asset("./util/js/main.js") }}"></script>
+
+	{% block scriptP %}
+				
+	{% endblock %}
+
 </body>
 
 </html>

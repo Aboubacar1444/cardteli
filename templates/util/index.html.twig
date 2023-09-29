@@ -123,6 +123,7 @@
 		</div>
 	</div>
 </section>
+
 <section class="ls text-center section_padding_top_150 section_padding_bottom_150">
 	<div class="container">
 		<div class="row">
@@ -191,7 +192,7 @@
 									<li> {{OffrePersoAvantage.unites }} {% if OffrePersoAvantage.promos == true %} <sup>+{{OffrePersoAvantage.bonus}}</sup>{% endif %}{{OffrePersoAvantage.libelles }}  </li>
 								{% endfor %}
 							</ul>
-							<div class="toppadding_10 visible-lg"></div> <a href="#" class="theme_button round_button color1"><i class="fa fa-angle-right" aria-hidden="true"></i></a> </div>
+							<div class="toppadding_10 visible-lg"></div> <a href="{{ path('app_cart_add', parameters = {'id': OffrePerso.id, 'product':"pack"}) }}" class="theme_button round_button color1"><i class="fa fa-angle-right" aria-hidden="true"></i></a> </div>
 					</div>
 					<div class="col-xs-12 col-sm-4">
 						<div class="teaser text-center">
@@ -202,7 +203,7 @@
 									<li> {{OffreProAvantage.unites }} {% if OffreProAvantage.promos == true %} <sup>+{{OffreProAvantage.bonus}}</sup>{% endif %}{{OffreProAvantage.libelles }}  </li>
 								{% endfor %}
 							</ul>
-							<div class="toppadding_10 visible-lg"></div> <a href="#" class="theme_button round_button color1"><i class="fa fa-angle-right" aria-hidden="true"></i></a> </div>
+							<div class="toppadding_10 visible-lg"></div> <a href="{{ path('app_cart_add', parameters = {'id': OffrePro.id, 'product':"pack"}) }}" class="theme_button round_button color1"><i class="fa fa-angle-right" aria-hidden="true"></i></a> </div>
 					</div>
 					<div class="col-xs-12 col-sm-4">
 						<div class="teaser text-center">
@@ -213,7 +214,7 @@
 									<li> {{OffreVipAvantage.unites }} {% if OffreVipAvantage.promos == true %} <sup>+{{OffreVipAvantage.bonus}}</sup>{% endif %}{{OffreVipAvantage.libelles }}  </li>
 								{% endfor %}
 							</ul>
-							<div class="toppadding_10 visible-lg"></div> <a href="#" class="theme_button round_button color1"><i class="fa fa-angle-right" aria-hidden="true"></i></a> </div>
+							<div class="toppadding_10 visible-lg"></div> <a href="{{ path('app_cart_add', parameters = {'id': OffreVip.id, 'product':"pack"}) }}" class="theme_button round_button color1"><i class="fa fa-angle-right" aria-hidden="true"></i></a> </div>
 					</div>
 				</div>
 			</div>
@@ -226,63 +227,25 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-6 text-center text-md-left">
 				<h2 class="section_header">Donnez une image professionnelle à votre marque</h2>
-				<p class="under_heading grey">for free</p>
+				<p class="under_heading grey">
+				Nous avons les meilleurs Infographiste
+				Donnez une image professionnelle à votre marque
+				</p>
 				<div class="toppadding_15 visible-lg"></div>
 			</div>
 			<div class="col-xs-12 col-md-6 text-center hidden-xs hidden-sm"> <img src="{{domaine}}/util/images/phone.png" alt=""> </div>
 		</div>
 	</div>
 </section>
-<section id="blog" class="ls section_padding_top_150 section_padding_bottom_150">
+{# <section id="blog" class="ls section_padding_top_150 section_padding_bottom_150">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-10 text-center text-sm-left">
 				<h2 class="section_header">Avons les meilleurs Infographiste</h2>
 				<p class="under_heading grey">Donnez une image professionnelle à votre marque</p>
 			</div>
-			<div class="col-xs-12 col-sm-2 text-right hidden-xs"> <a href="blog-full.html" class="theme_button round_button">Phone</a> </div>
-			<div class="toppadding_15 clearfix"></div>
-			<div class="toppadding_20 clearfix visible-lg"></div>
-			<div class="col-xs-12">
-				<div class="owl-carousel with_shadow_items" data-responsive-lg="3" data-responsive-md="3" data-responsive-sm="2" data-responsive-xs="2" data-margin="60">
-					<article class="post vertical-item content-padding big-padding with_shadow text-center">
-						<div class="item-media entry-thumbnail"> <img src="{{domaine}}/util/images/blog-square/01.jpg" alt="">
-							<div class="entry-meta-corner"> <a href="blog-single-left.html">
-						<time datetime="2017-10-03T08:50:40+00:00">22 may</time>
-					</a> </div>
-						</div>
-						<div class="item-content">
-							<h3 class="entry-title small"> <a href="blog-single-left.html">Differ one financial advisor from another</a> </h3> <span class="categories-links small-text">
-					<a href="blog-@@type.html">Conception et impresseion</a>
-				</span> </div>
-					</article>
-					<article class="post vertical-item content-padding big-padding with_shadow text-center">
-						<div class="item-media entry-thumbnail"> <img src="{{domaine}}/util/images/blog-square/02.jpg" alt="">
-							<div class="entry-meta-corner"> <a href="blog-single-left.html">
-						<time datetime="2017-10-03T08:50:40+00:00">18 may</time>
-					</a> </div>
-						</div>
-						<div class="item-content">
-							<h3 class="entry-title small"> <a href="blog-single-left.html">The 10 most frequently asked HR questions</a> </h3> <span class="categories-links small-text">
-					<a href="blog-@@type.html">Kakemono</a>
-				</span> </div>
-					</article>
-					<article class="post vertical-item content-padding big-padding with_shadow text-center">
-						<div class="item-media entry-thumbnail"> <img src="{{domaine}}/util/images/blog-square/03.jpg" alt="">
-							<div class="entry-meta-corner"> <a href="blog-single-left.html">
-						<time datetime="2017-10-03T08:50:40+00:00">14 may</time>
-					</a> </div>
-						</div>
-						<div class="item-content">
-							<h3 class="entry-title small"> <a href="blog-single-left.html">Is loan refinancing right for you?</a> </h3> <span class="categories-links small-text">
-					<a href="blog-@@type.html">Des spots plublicitaire</a>
-				</span> </div>
-					</article>
-				</div>
-			</div>
-			<div class="col-xs-12 visible-xs text-center">
-				<div class="toppadding_30"></div> <a href="blog-full.html" class="theme_button min_width_button">more</a> </div>
+			
 		</div>
 	</div>
-</section>
+</section> #}
 {% endblock %}

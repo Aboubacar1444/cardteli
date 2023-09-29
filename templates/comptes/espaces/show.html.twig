@@ -1,6 +1,6 @@
 {% extends 'base-compte.html.twig' %}
 
-{% block title %}Espaces{% endblock %}
+{% block title %}{{espace.noms}}{% endblock %}
 
 {% block body %}
    <section class="ls section_padding_top_150 section_padding_bottom_150">
@@ -17,19 +17,19 @@
                 <div class="teaser text-center">
                     <div class="teaser_icon grey size_big"> <i class="rt-icon2-banknote"></i> </div>
                     <h3 class="counter" data-from="0" data-to="19350" data-speed="2100">0</h3>
-                    <p>Dollars</p>
+                    <p>XOF</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="teaser text-center">
                     <div class="teaser_icon grey size_big"> <i class="rt-icon2-user"></i> </div>
                     <h3 class="counter" data-from="0" data-to="1256" data-speed="1400">0</h3>
-                    <p>Notre visite</p>
+                    <p>Audience</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="teaser text-center">
-                    <div class="teaser_icon grey size_big"> <i class="rt-icon2-like"></i> </div>
+                    <div class="teaser_icon grey size_big"> <i class="rt-icon2-message"></i> </div>
                     <h3 class="counter-wrap"> <span class="counter" data-from="0" data-to="100000" data-speed="1500">0</span><span class="counter-add">+</span> </h3>
                     <p>Message</p>
                 </div>
@@ -37,7 +37,14 @@
         </div>
     </div>
 </section>
-  <section class="ls section_padding_top_150 section_padding_bottom_150 columns_padding_30">
+    {% for message in app.flashes('success') %}
+                <div class="mb-0 alert alert-success mx-auto text-center fw-bold alert-dismissible" role="alert">
+                    <p class="">
+                        {{ message }}
+                    </p>
+                </div>
+    {% endfor %}
+<section class="ls section_padding_top_150 section_padding_bottom_150 columns_padding_30">
     <div class="container">
         <div class="row">
              <div class="col-xs-12 col-md-8 col-lg-8 col-md-push-4 col-lg-push-4">
@@ -53,7 +60,9 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-sm-12">
-                                                        <div> <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg" class="theme_button min_width_button color1"><i class="fa fa-leaf rightpadding_5"></i>Offre</a> </div>
+                                                        <div> 
+                                                            <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg" class="theme_button min_width_button color1"><i class="fa fa-leaf rightpadding_5"></i>Offre</a> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,8 +72,25 @@
                                                 <div class="container">
                                                     <div class="row">
                                                         <div class="col-sm-12">
-                                                           <div> <a href="#" class="theme_button min_width_button color1"><i class="fa fa-leaf rightpadding_5"></i>Choisir une carte</a><a href="#" class="theme_button min_width_button color1"><i class="fa fa-leaf rightpadding_5"></i>Choisir un site</a> </div>
-                                                            <div> <a href="{{path('app_numero_ussd',{'espaces':'ok'})}}" class="theme_button min_width_button color1"><i class="fa fa-leaf rightpadding_5"></i>Choisir un numéro</a><a href="#" class="theme_button min_width_button color1"><i class="fa fa-leaf rightpadding_5"></i>Ajouter un site</a> </div>
+                                                            <div>
+                                                                {% if not espace.cardTemplate %}
+                                                                    <a href="{{ path("app_modeles", {'espace':espace.id }) }}" class="theme_button min_width_button color1">
+                                                                        <i class="fa fa-leaf rightpadding_5"></i>Choisir une carte
+                                                                    </a>
+                                                                {% endif %} 
+                                                                {% if not espace.siteTemplate %}
+                                                                    <a href="{{ path("app_site_template", {"espace":espace.id}) }}" class="theme_button min_width_button color1">
+                                                                        <i class="fa fa-leaf rightpadding_5"></i>Choisir un site
+                                                                    </a> 
+                                                                {% endif %}
+                                                            </div>
+                                                            <div> 
+                                                            {% if espace.unitesUssd is same as (0) %}
+                                                                <a href="{{ path('app_numero_ussd',{'espaces': espace.id } )}}" class="theme_button min_width_button color1">
+                                                                    <i class="fa fa-leaf rightpadding_5"></i>Choisir un numéro
+                                                                </a>
+                                                            {% endif %}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -123,114 +149,35 @@
                     </ul>
                 </div>
             </div>
-            <!--eof .col-sm-8 (main content)-->
-            <!-- sidebar -->
-            <aside class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-md-pull-8 col-lg-pull-8 col-sm-offset-3 col-md-offset-0">
-                <div class="widget widget_categories">
-                    <h3 class="widget-title">Categories</h3>
-                    <ul class="greylinks">
-                        <li> <a href="#">Statut</a> <span>/ 6 /</span> </li>
-                        <li> <a href="#">Votre carte physique</a> <span>/ 2 /</span> </li>
-                        <li> <a href="#">Votre site web</a> <span>/ 4 /</span> </li>
-                    </ul>
-                </div>
-                <div class="widget widget_slider widget_recent_posts">
-                    <h3 class="widget-title">Post Slider</h3>
-                    <div class="owl-carousel with_shadow_items" data-nav="true" data-loop="true" data-items="1" data-responsive-lg="1" data-responsive-md="1" data-responsive-sm="1" data-responsive-xs="1">
-                        <div class="vertical-item content-padding with_shadow">
-                            <div class="item-media entry-thumbnail"> <img src="{{domaine}}/util/images/gallery/01.jpg" alt="">
-                                <div class="media-links"> <a class="abs-link" title="" href="blog-single-left.html"></a> </div>
-                            </div>
-                            <div class="item-content">
-                                <h4> <a href="blog-single-right.html">Tenderloin shankle prosciutto turducken strip.</a> </h4> <span class="entry-meta inline-content with_dividers highlightlinks highlight">
-                        <a href="blog-single-right.html">
-                            <time datetime="2017-10-03T08:50:40+00:00">19 May 2018</time>
-                        </a>
-                    </span> </div>
-                        </div>
-                        <div class="vertical-item content-padding with_shadow">
-                            <div class="item-media entry-thumbnail"> <img src="{{domaine}}/util/images/gallery/05.jpg" alt="">
-                                <div class="media-links"> <a class="abs-link" title="" href="blog-single-left.html"></a> </div>
-                            </div>
-                            <div class="item-content">
-                                <header class="entry-header">
-                                    <h4> <a href="blog-single-right.html">T-bone pork loin tenderloin landjaeger salami.</a> </h4> <span class="entry-meta inline-content with_dividers highlightlinks highlight">
-                            <a href="blog-single-right.html">
-                                <time datetime="2017-10-03T08:50:40+00:00">20 May 2018</time>
-                            </a>
-                        </span> </header>
-                            </div>
-                        </div>
-                        <div class="vertical-item content-padding with_shadow">
-                            <div class="item-media entry-thumbnail"> <img src="{{domaine}}/util/images/gallery/07.jpg" alt="">
-                                <div class="media-links"> <a class="abs-link" title="" href="blog-single-left.html"></a> </div>
-                            </div>
-                            <div class="item-content">
-                                <header class="entry-header">
-                                    <h4> <a href="blog-single-right.html">Tenderloin shankle prosciutto turducken strip.</a> </h4> <span class="entry-meta inline-content with_dividers highlightlinks highlight">
-                            <a href="blog-single-right.html">
-                                <time datetime="2017-10-03T08:50:40+00:00">21 May 2018</time>
-                            </a>
-                        </span> </header>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="widget widget_instagram">
-                    <h3 class="widget-title">Instagram</h3>
-                    <div class="instafeed"> </div>
-                </div>
-                <div class="cs gredient lightened with_padding">
-                    <div class="widget widget_mailchimp">
-                        <h3 class="widget-title black">Newsletter</h3>
-                        <form class="signup" action="./" method="get">
-                            <div class="form-group-wrap">
-                                <div class="form-group"> <label for="mailchimp" class="sr-only">Enter your email here</label> <input name="email" type="email" id="mailchimp" class="mailchimp_email form-control" placeholder="Email Address"> </div> <button type="submit" class="theme_button color1 no_bg_button">Submit</button>											</div>
-                            <div class="response"></div>
-                        </form>
-                    </div>
-                </div>
-                <div class="widget widget_tag_cloud">
-                    <h3 class="widget-title">Tags</h3>
-                    <div class="tagcloud"> <a href="#" title="">Financial</a> <a href="#" title="">Law</a> <a href="#" title="">Invest</a> <a href="#" title="">Investment</a> <a href="#" title="">Stock market</a> <a href="#" title="">Money</a> <a href="#" title="">Corporate</a> </div>
-                </div>
-                <div class="widget widget_twitter highlight2links">
-                    <h3 class="widget-title">Twitter</h3>
-                    <div class="twitter"></div>
-                </div>
-            </aside>
-            <!-- eof aside sidebar -->
+           
         </div>
     </div>
 </section> 
+{% if not espace.commandes %}   
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="table-responsive">
-            <table class="table_template darklinks topmargin_0" id="timetable">
-                <thead>
-                    <tr>
-                        <th>Ref</th>
-                        <th>Date</th>
-                        <th>Offre</th>
-                        <th>Montant</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td> <a href="event-single-left.html" class="management">Management</a> </td>
-                        <td> <a href="event-single-left.html" class="meetings"> Meetings</a> </td>
-                        <td> </td>
-                        <td> <a href="event-single-left.html" class="consultations"> Consultations</a> </td>
-                        <td> <a href="event-single-left.html" class="presentations">Presentations</a>  
-                    </tr>
-                    
-                </tbody>
-            </table>
-        </div>
+      <div class="row">
+               <div class="cs gradient lightened text-center text-white section_padding_50 p-5"> 
+                    <h2 class="text-white py-5">Joindre mon offre à mon espace</h2>   
+               </div>
+                <form method="post">
+                    <div class="col-md-12 justify-content-center mx-auto fw-bold">
+                        <select name="commande" class="form-select select-group select">
+                            <option selected>Choisissez l'offre</option>
+                            {% for item in commandes %}
+                                <option value={{item.id}}>{{item.reference}}</option> 
+                            {% endfor %}
+                        </select>
+                        <button class="btn btn-primary" type="submit"> Let's go! </button>
+                    </div>
+                </form>
+               
+    </div>
     </div>
   </div> 
-</div>     
+</div>    
+{% endif %}
+
 {% endblock %}
 

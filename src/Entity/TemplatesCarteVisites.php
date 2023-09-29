@@ -49,9 +49,16 @@ class TemplatesCarteVisites
     #[ORM\Column(length: 30)]
     private ?string $codes = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $price = null;
+
+    #[ORM\OneToMany(mappedBy: 'cardTemplate', targetEntity: Espaces::class)]
+    private Collection $espaces;
+
     public function __construct()
     {
         $this->templateImages = new ArrayCollection();
+        $this->espaces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -206,6 +213,48 @@ class TemplatesCarteVisites
     public function setCodes(string $codes): self
     {
         $this->codes = $codes;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Espaces>
+     */
+    public function getEspaces(): Collection
+    {
+        return $this->espaces;
+    }
+
+    public function addEspace(Espaces $espace): self
+    {
+        if (!$this->espaces->contains($espace)) {
+            $this->espaces->add($espace);
+            $espace->setCardTemplate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEspace(Espaces $espace): self
+    {
+        if ($this->espaces->removeElement($espace)) {
+            // set the owning side to null (unless already changed)
+            if ($espace->getCardTemplate() === $this) {
+                $espace->setCardTemplate(null);
+            }
+        }
 
         return $this;
     }

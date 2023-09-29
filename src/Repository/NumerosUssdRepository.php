@@ -39,20 +39,21 @@ class NumerosUssdRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return NumerosUssd[] Returns an array of NumerosUssd objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('n')
-//            ->andWhere('n.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('n.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return NumerosUssd[] Returns an array of NumerosUssd objects
+    */
+   public function checkUssd($ussd): array
+   {
+    
+       return $this->createQueryBuilder('n')
+           ->andWhere('n.numeros LIKE :ussd')
+           ->setParameter('ussd', "%$ussd%")
+           ->addOrderBy("n.numeros", 'ASC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?NumerosUssd
 //    {

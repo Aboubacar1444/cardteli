@@ -22,6 +22,15 @@ class NumerosUssd
     #[ORM\Column]
     private ?bool $disponibilites = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $prix = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $code_qr = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $classe = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +68,42 @@ class NumerosUssd
     public function setDisponibilites(bool $disponibilites): self
     {
         $this->disponibilites = $disponibilites;
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(?float $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getCodeQr(): ?int
+    {
+        return $this->code_qr;
+    }
+
+    public function setCodeQr(?int $code_qr): self
+    {
+        $this->code_qr = $code_qr;
+
+        return $this;
+    }
+
+    public function getClasse(): ?string
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?string $classe): static
+    {
+        $this->classe = $classe;
 
         return $this;
     }

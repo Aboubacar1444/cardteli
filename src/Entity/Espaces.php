@@ -32,6 +32,19 @@ class Espaces
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Commandes $commandes = null;
 
+    #[ORM\ManyToOne(inversedBy: 'espaces')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $User = null;
+
+    #[ORM\ManyToOne(inversedBy: 'espaces')]
+    private ?TemplatesCarteVisites $cardTemplate = null;
+
+    #[ORM\OneToOne( inversedBy: 'espaces', cascade: ['persist', 'remove'])]
+    private ?SiteTemplate $siteTemplate = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?array $userInfoSiteTemplate = null;
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +118,54 @@ class Espaces
     public function setCommandes(?Commandes $commandes): self
     {
         $this->commandes = $commandes;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
+
+        return $this;
+    }
+
+    public function getCardTemplate(): ?TemplatesCarteVisites
+    {
+        return $this->cardTemplate;
+    }
+
+    public function setCardTemplate(?TemplatesCarteVisites $cardTemplate): self
+    {
+        $this->cardTemplate = $cardTemplate;
+
+        return $this;
+    }
+
+    public function getSiteTemplate(): ?siteTemplate
+    {
+        return $this->siteTemplate;
+    }
+
+    public function setSiteTemplate(?siteTemplate $siteTemplate): static
+    {
+        $this->siteTemplate = $siteTemplate;
+
+        return $this;
+    }
+
+    public function getUserInfoSiteTemplate(): ?array
+    {
+        return $this->userInfoSiteTemplate;
+    }
+
+    public function setUserInfoSiteTemplate(?array $userInfoSiteTemplate): static
+    {
+        $this->userInfoSiteTemplate = $userInfoSiteTemplate;
 
         return $this;
     }

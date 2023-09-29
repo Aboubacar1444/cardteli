@@ -734,19 +734,20 @@ if (jQuery().prettyPhoto) {
 		var currentVal = numberField.val();
 		var sign = jQuery(this).val();
 		if (sign === '-') {
-			if (currentVal > 1) {
-				numberField.val(parseFloat(currentVal) - 1);
+			if (currentVal > 50) {
+				numberField.val(parseFloat(currentVal) - 50);
 			}
 		} else {
-			numberField.val(parseFloat(currentVal) + 1);
+			if(currentVal < 500)
+				numberField.val(parseFloat(currentVal) + 50);
 		}
 	});
 
 	//remove product from cart
-	jQuery('a.remove').on('click', function( e ) {
-		e.preventDefault();
-		jQuery(this).closest('tr, .media').remove();
-	});
+	// jQuery('a.remove').on('click', function( e ) {
+	// 	e.preventDefault();
+	// 	jQuery(this).closest('tr, .media').remove();
+	// });
 
 	//price filter - only for HTML
 	if (jQuery().slider) {

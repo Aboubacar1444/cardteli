@@ -1,11 +1,18 @@
 {% extends 'base-compte.html.twig' %}
 
-{% block title %}Hello ComptesController!{% endblock %}
+{% block title %}Dashboard {{app.user.prenom ~'  '~ app.user.nom}}{% endblock %}
 
 {% block body %}
 <section class="ls section_padding_top_150 section_padding_bottom_150 colum_padding_30">
     <div class="container">
         <div class="row">
+            {% for message in app.flashes('success') %}
+                <div class="mb-0 alert alert-success mx-auto text-center fw-bold alert-dismissible" role="alert">
+                    <p class="">
+                        {{ message }}
+                    </p>
+                </div>
+            {% endfor %}
             <div class="col-xs-12 col-md-12 col-lg-12">
                 <article class="post event-item side-item side-sm content-padding with_shadow">
                     <div class="ds gradient lightened with_padding">
@@ -49,7 +56,7 @@
                             <div class="item-content">
                                 <div class="entry-header">
                                     <div class="entry-meta inline-content with_dividers highlight"> <span>
-                                            <time datetime="2017-10-03T08:50:40+00:00">{{espace.dateEcheance}}</time>
+                                            <time datetime="{{espace.dateEcheance|date('d-m-Y')}}">{{espace.dateEcheance|date('d-m-Y')}}</time>
                                         </span> </div>
                                     <h3 class="entry-title"> <a href="{{path('app_espaces_show',{'id':espace.id})}}">{{espace.noms}}</a> </h3>
                                 </div>

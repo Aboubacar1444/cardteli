@@ -1,0 +1,167 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<section class="page_breadcrumbs cs gradient lightened section_padding_50">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h1>Des modèles de site</h1>
+					<ol class="breadcrumb darklinks">
+						<li>
+							<a href="/">Accueil</a>
+						</li>
+						<li class="active">
+							<span>Modèles de site</span>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+	{% for message in app.flashes('success') %}
+		<div class="mb-0 alert alert-success mx-auto text-center fw-bold alert-dismissible" role="alert">
+			<p class="">
+				{{ message }}
+			</p>
+		</div>
+	{% endfor %}
+		
+	<section class="ls section_padding_top_150 section_padding_bottom_150 columns_padding_30">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-md-8 col-lg-8 col-md-push-4 col-lg-push-4">
+					<div class="shop-sorting">
+						<form
+							class="content-justify v-center v-spacing content-margins">
+							{# <div> Affichage des résultats 1-6 sur 36 </div> #}
+							<div class="form-group bottommargin_0">
+								<select aria-required="true" id="date" name="date">
+									<option value="">Sort by</option>
+									<option value="default">Default Sorting</option>
+									<option value="value">by Value</option>
+									<option value="date">by Date</option>
+									<option value="popular">by Popularity</option>
+								</select>
+							</div>
+						</form>
+					</div>
+					<div class="columns-2">
+						<ul id="products" class="products list-unstyled">
+							{% for modele in modeles.data %}
+								<li class="product type-product">
+									<div class="with-corner-label">
+										<article class="vertical-item content-padding big-padding with_shadow text-center">
+											<div class="item-media-wrap">
+												<div class="item-media">
+													{% if not app.request.get('espace') and not app.user %}
+														<a href="{{path('app_site_template_details',{'id': modele.id}) }}"> <img src="{{domaine}}/assets/img/templatesCartes/{{modele.previewImage}}" alt=""/> </a>
+													{% else %}
+														<a href="{{path('app_site_template_details',{'id': modele.id, "espace": espace.id}) }}"> <img src="{{domaine}}/assets/img/templatesCartes/{{modele.previewImage}}" alt=""/> </a>
+													{% endif %}
+												</div>
+												{# {% if modele.new  == true %}
+													<div class="corner-label new">Nouveau</div>
+												{% endif %} #}
+											</div>
+											<div class="item-content">
+												<h3 class="entry-title">
+													{% if not app.request.get('espace') and not app.user %}
+														<a href="{{path('app_site_template_details',{'id': modele.id}) }}">{{modele.name}}</a>
+													{% else %}
+														<a href="{{path('app_site_template_details',{'id': modele.id, "espace": espace.id}) }}">{{modele.name}}</a>
+													{% endif %}
+												</h3>
+												<div class="star-rating" title="Rated 3.0 out of 5">
+													<span style="width:60%">
+														<strong class="rating">5</strong>
+														out of 5
+													</span>
+												</div>
+												{# <div class="price">
+													<span class="amount">{{modele.types}}</span>
+												</div> #}
+												<p class="topmargin_20">
+													{% if not app.request.get('espace') and not app.user %}
+														<a href="{{path('app_site_template_details',{'id': modele.id}) }}">{{modele.name}}</a>
+													{% else %}
+														<a href="{{path('app_site_template_details',{'id': modele.id, "espace": espace.id}) }}">{{modele.name}}</a>
+													{% endif %}
+												</p>
+											</div>
+										</article>
+									</div>
+								</li>
+							{% endfor %}
+							{% set path = 'app_site_template' %}
+							{% set pages = modeles.pages  %}
+							{% set currentPage = modeles.page  %}
+
+						</ul>
+					</div>
+					<!-- eof .columns-* -->
+
+					{% if pages > 1 %}
+						<div class="text-center topmargin_30">
+							<ul class="pagination">
+								{% if currentPage > 1 %}
+									<li>
+										<a href="{{path(path,{page:currentPage - 1})}}">
+											<span class="sr-only">Prev</span>
+											<i class="fa fa-angle-left" aria-hidden="true"></i>
+										</a>
+									</li>
+								{% else %}
+									<li class="disabled">
+										<a href="">
+											<span class="sr-only">Prev</span>
+											<i class="fa fa-angle-left" aria-hidden="true"></i>
+										</a>
+									</li>
+								{% endif %}
+								{% for page in 1..pages %}
+									<li class="{{(page == currentPage)? 'active':''}} ">
+										<a href="{{path(path,{page:page})}}">{{page}}</a>
+									</li>
+								{% endfor %}
+								{% if currentPage <  pages %}
+									<li>
+										<a href="{{path(path,{page:currentPage + 1})}}">
+											<span class="sr-only">Next</span>
+											<i class="fa fa-angle-right" aria-hidden="true"></i>
+										</a>
+									</li>
+								{% else %}
+									<li class="disabled">
+										<a href="#">
+											<span class="sr-only">Next</span>
+											<i class="fa fa-angle-right" aria-hidden="true"></i>
+										</a>
+									</li>
+								{% endif %}
+							</ul>
+						</div>
+					{% endif %}
+				</div>
+				<aside class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-md-pull-8 col-lg-pull-8 col-sm-offset-3 col-md-offset-0">
+					<div class="ds gradient lightened with_padding">
+						<div class="widget widget_search">
+							<h3 class="widget-title black">Search Product</h3>
+							<form method="get" class="searchform" action="./">
+								<div class="form-group margin_0">
+									<label class="sr-only" for="widget-search">Search for:</label>
+									<input id="widget-search" type="text" value="" name="search" class="form-control" placeholder="Search here">
+								</div>
+								<button type="submit" class="theme_button no_bg_button">Search</button>
+							</form>
+						</div>
+					</div>
+					
+				</aside>
+				<!-- eof aside sidebar -->
+			</div>
+		</div>
+	</section>
+	
+	
+{% endblock %}
